@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
     "module": "commonjs",
     "declaration": true,
     "noImplicitAny": false,
@@ -9,13 +8,11 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es6",
+    "target": "es2017",
     "sourceMap": false,
     "allowJs": false,
-    "rootDir": "./src",
     "baseUrl": "./",
-    "outDir": "./dist",
-    "lib": ["es2017"]
+    "outDir": "./dist"
   },
   "include": [
     "*.ts",
@@ -27,6 +24,6 @@
     "node_modules",
     "./**/*.spec.ts",
     "examples",
-    "src/__tests__"
+
   ]
 }

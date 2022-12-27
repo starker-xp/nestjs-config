@@ -1,9 +1,7 @@
-tsconfig.json
-node_modules/
 src/
 /index.ts
-yarn.lock
-yarn-error.log
+tsconfig.json
+node_modules/
 package-lock.json
 .github
 coverage/
