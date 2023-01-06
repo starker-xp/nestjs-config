@@ -5,15 +5,6 @@ import { ConfigService, ConfigOptions } from './config.service';
 @Module({})
 export class ConfigModule {
   /**
-   * @param startPath
-   * @deprecated
-   */
-  static resolveSrcPath(startPath: string): typeof ConfigModule {
-    ConfigService.resolveSrcPath(startPath);
-    return this;
-  }
-
-  /**
    * @param path
    */
   public static resolveRootPath(path: string): typeof ConfigModule {
@@ -31,7 +22,7 @@ export class ConfigModule {
     const configProvider = {
       provide: ConfigService,
       useFactory: async (): Promise<ConfigService> => {
-        return ConfigService.load(glob, options);
+        return await ConfigService.load(glob, options);
       },
     };
     return {

@@ -406,7 +406,7 @@ You can specify dotenv options with the second parameter of the load method
 
 ```ts
 ConfigModule.load(path.resolve(__dirname, '*/**!(*.d).config.{ts,js}'), {
-    path: path.resolve(__dirname, '..', '.env.staging')),
+    path: path.resolve(__dirname, '..', '__tests__', '.env.staging')),
 });
 ```
 
