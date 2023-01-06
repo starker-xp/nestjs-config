@@ -9,7 +9,7 @@
 <!-- enter version tag here -->
 
 **@nestjs/common+core or other package versions**
- - @nestjs/common: <!-- 5.2 | 5.* -->
+ - @nestjs/common: <!-- 9.2 | 9.* -->
  - @nestjs/core: 
 
 #### Excepted behavior 

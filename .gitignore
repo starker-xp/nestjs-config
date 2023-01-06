@@ -13,3 +13,4 @@ dist/
 /index.js
 /index.d.ts
 .idea
+*.orig

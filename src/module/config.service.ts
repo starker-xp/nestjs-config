@@ -199,8 +199,9 @@ export class ConfigService {
     glob: string,
     options?: ConfigOptions | false,
   ): Promise<Config> {
-
-    glob = this.root(glob).replace(/\\/gi, "/");
+    glob = this.root(glob);
+    // Windows Fix
+    glob = glob.replace(/\\/g, "/");
     return new Promise((resolve, reject) => {
       new Glob(glob, {}, (err, matches) => {
         /* istanbul ignore if */
@@ -231,6 +232,8 @@ export class ConfigService {
     options?: ConfigOptions | false,
   ): Config {
     glob = this.root(glob).replace(/\\/gi, "/");
+    // Windows Fix
+    glob = glob.replace(/\\/g, "/");
     const matches = globSync(glob);
     this.loadEnv(options);
 

@@ -22,7 +22,7 @@ export class ConfigModule {
     const configProvider = {
       provide: ConfigService,
       useFactory: async (): Promise<ConfigService> => {
-        return ConfigService.load(glob, options);
+        return await ConfigService.load(glob, options);
       },
     };
     return {
