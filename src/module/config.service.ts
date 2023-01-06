@@ -34,11 +34,6 @@ export class ConfigService {
   public static rootPath?: string;
 
   /**
-   * @deprecated use rootPath instead
-   */
-  public static srcPath?: string;
-
-  /**
    * @param {Config} config
    */
   constructor(config: Config = {}) {
@@ -163,23 +158,8 @@ export class ConfigService {
    * @returns {string}
    */
   public static root(dir: string = ''): string {
-    const rootPath =
-      this.rootPath || this.srcPath || path.resolve(process.cwd());
+    const rootPath = this.rootPath || path.resolve(process.cwd());
     return path.resolve(rootPath, dir);
-  }
-
-  /**
-   * @param {string} dir
-   * @returns {string}
-   *
-   * @deprecated use configService.root() instead
-   */
-  public static src(dir: string = ''): string {
-    console.log(
-      `\x1b[33m%s\x1b[0m`,
-      `WARNING: Method 'src' has been deprecated. Please use 'root'`,
-    );
-    return this.root(dir);
   }
 
   /**
@@ -205,23 +185,9 @@ export class ConfigService {
       }
 
       this.rootPath = workingDir;
-      this.srcPath = workingDir;
     }
 
     return this;
-  }
-
-  /**
-   * @param startPath
-   *
-   * @deprecated use configService.resolveRootPath() instead
-   */
-  public static resolveSrcPath(startPath: string): typeof ConfigService {
-    console.log(
-      `\x1b[33m%s\x1b[0m`,
-      `WARNING: Method 'resolveSrcPath' has been deprecated. Please use 'resolveRootPath'`,
-    );
-    return this.resolveRootPath(startPath);
   }
 
   /**
@@ -233,7 +199,8 @@ export class ConfigService {
     glob: string,
     options?: ConfigOptions | false,
   ): Promise<Config> {
-    glob = this.root(glob);
+
+    glob = this.root(glob).replace(/\\/gi, "/");
     return new Promise((resolve, reject) => {
       new Glob(glob, {}, (err, matches) => {
         /* istanbul ignore if */
@@ -263,7 +230,7 @@ export class ConfigService {
     glob: string,
     options?: ConfigOptions | false,
   ): Config {
-    glob = this.root(glob);
+    glob = this.root(glob).replace(/\\/gi, "/");
     const matches = globSync(glob);
     this.loadEnv(options);
 
